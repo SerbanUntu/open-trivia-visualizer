@@ -1,4 +1,9 @@
-import type { QuestionResponse, Result, TriviaQuestion } from "./types";
+import {
+  QuestionResponseSchema,
+  type QuestionResponse,
+  type Result,
+  type TriviaQuestion,
+} from "./types";
 import { Err, Ok, decodeHtml } from "./utils";
 
 export function generateApiUrl(amount: number) {
@@ -15,7 +20,7 @@ export async function fetchQuestions(
   }
   try {
     const data = await response.json();
-    const result = data as QuestionResponse;
+    const result: QuestionResponse = QuestionResponseSchema.parse(data);
     const parsedQuestions: TriviaQuestion[] = result.results.map((q) => {
       return {
         ...q,

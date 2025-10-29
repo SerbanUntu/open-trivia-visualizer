@@ -1,5 +1,6 @@
 // Error handling
 
+import z from "zod";
 import { Err, Ok } from "./utils";
 
 export type Result<T, E> =
@@ -23,14 +24,16 @@ export type CategoryResponse = {
   trivia_categories: TriviaCategory[];
 };
 
-export type TriviaQuestion = {
-  type: "multiple" | "boolean";
-  difficulty: "easy" | "medium" | "hard";
-  category: string;
-  question: string;
-  correct_answer: string;
-  incorrect_answers: string[];
-};
+export const TriviaQuestionSchema = z.object({
+  type: z.enum(["multiple", "boolean"]),
+  difficulty: z.enum(["easy", "medium", "hard"]),
+  category: z.string(),
+  question: z.string(),
+  correct_answer: z.string(),
+  incorrect_answers: z.array(z.string()),
+});
+
+export type TriviaQuestion = z.infer<typeof TriviaQuestionSchema>;
 
 export type OpentdbResponseCode =
   | "SUCCESS"
@@ -63,7 +66,9 @@ export function getResponseCodeFromNumber(
   }
 }
 
-export type QuestionResponse = {
-  response_code: number;
-  results: TriviaQuestion[];
-};
+export const QuestionResponseSchema = z.object({
+  response_code: z.number(),
+  results: z.array(TriviaQuestionSchema),
+});
+
+export type QuestionResponse = z.infer<typeof QuestionResponseSchema>;
