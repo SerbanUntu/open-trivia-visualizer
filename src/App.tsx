@@ -1,42 +1,21 @@
 import { useEffect, useState } from "react";
 import { fetchQuestions } from "./api";
-import { isErr } from "./utils";
+import { capitalize, isErr } from "./utils";
 import { type TriviaQuestion } from "./types";
-import {
-  Bar,
-  BarChart,
-  ResponsiveContainer,
-  Cell,
-  Legend,
-  Pie,
-  PieChart,
-  Tooltip,
-  XAxis,
-  YAxis,
-  type TooltipContentProps,
-} from "recharts";
 import useWindow from "./hooks/use-window";
+import DifficultyChart from "./components/DifficultyChart";
+import CategoryChart from "./components/CategoryChart";
+import Button from "./components/Button";
 
-const CustomTooltip = ({
-  active,
-  payload,
-  label,
-}: TooltipContentProps<string | number, string>) => {
-  if (active && payload && payload.length > 0) {
-    return (
-      <div className="bg-gray-800 text-white p-3 rounded-xl shadow-lg">
-        <p className="text-primary">{`${label} : ${payload[0].value}`}</p>
-      </div>
-    );
-  }
-  return null;
-};
+const CHART_TYPES = ["category", "difficulty"];
 
 function App() {
   const [questionsAmount, setQuestionsAmount] = useState(50);
   const [questions, setQuestions] = useState<TriviaQuestion[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [filter, setFilter] = useState<string | null>(null);
+  const [currentChart, setCurrentChart] =
+    useState<(typeof CHART_TYPES)[number]>("difficulty");
   const { width } = useWindow();
 
   const categories = Array.from(
@@ -98,12 +77,6 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const COLORS = {
-    easy: "#00C49F",
-    medium: "#FFBB28",
-    hard: "#FF8042",
-  };
-
   return (
     <main className="bg-background overflow-x-hidden text-foreground w-screen min-h-screen flex justify-center">
       <div className="p-8 overflow-x-hidden w-full max-w-3xl flex flex-col items-center gap-8">
@@ -121,85 +94,72 @@ function App() {
               setQuestionsAmount(Number(e.target.value));
             }}
           />
-          <button
-            className="px-3 text-white hover:opacity-75 cursor-pointer transition-all duration-200 py-0.5 rounded-sm bg-primary"
-            onClick={async () => await getApiData()}
-          >
+          <Button isPrimary={true} onClick={async () => await getApiData()}>
             Refetch
-          </button>
+          </Button>
         </div>
         {isLoading ? (
           <p className="text-muted">Loading...</p>
+        ) : questions.length === 0 ? (
+          <p className="text-muted">No data to show.</p>
         ) : (
           <>
-            <div className="flex flex-col gap-2">
-              <p>Select a filter:</p>
+            <div className="flex flex-col gap-2 w-full">
+              <p>Select a category filter:</p>
               <div className="flex flex-wrap gap-2">
-                {categories.map((category) =>
-                  filter === category ? (
-                    <button
-                      className="px-3 text-white hover:opacity-75 cursor-pointer transition-all duration-200 py-0.5 rounded-sm border-primary border-2 bg-primary"
-                      key={category}
-                      onClick={() => setFilter(null)}
-                    >
-                      {category}
-                    </button>
-                  ) : (
-                    <button
-                      className="px-3 text-white hover:opacity-75 cursor-pointer transition-all duration-200 py-0.5 rounded-sm border-muted border-2 bg-none"
-                      key={category}
-                      onClick={() => setFilter(category)}
-                    >
-                      {category}
-                    </button>
-                  )
-                )}
+                {categories.map((category) => (
+                  <Button
+                    key={category}
+                    isPrimary={filter === category}
+                    onClick={() => {
+                      if (filter === null) {
+                        setFilter(category);
+                        setCurrentChart("difficulty");
+                      } else {
+                        setFilter(null);
+                      }
+                    }}
+                  >
+                    {category}
+                  </Button>
+                ))}
               </div>
             </div>
 
-            <h2 className="text-xl font-bold">Distribution by difficulty</h2>
-            <div style={{ width: "100%", maxWidth: "500px" }}>
-              <ResponsiveContainer width="100%" height={chartWidth}>
-                <PieChart>
-                  <Legend />
-                  <Pie
-                    data={difficultyGrouping}
-                    nameKey="difficulty"
-                    dataKey="count"
-                    labelLine={false}
+            <div className="flex flex-col gap-2 w-full">
+              <p>
+                Select a chart:
+                {filter && (
+                  <span>
+                    {" "}
+                    (Cannot group by category when a category filter is applied)
+                  </span>
+                )}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {CHART_TYPES.map((chartType) => (
+                  <Button
+                    key={chartType}
+                    isPrimary={currentChart === chartType}
+                    disabled={
+                      isLoading || (chartType === "category" && filter !== null)
+                    }
+                    onClick={() => setCurrentChart(chartType)}
                   >
-                    {difficultyGrouping.map((grouping) => (
-                      <Cell
-                        key={grouping.difficulty}
-                        fill={COLORS[grouping.difficulty]}
-                      />
-                    ))}
-                  </Pie>
-                </PieChart>
-              </ResponsiveContainer>
+                    {capitalize(chartType)}
+                  </Button>
+                ))}
+              </div>
             </div>
 
-            {filter === null && (
-              <>
-                <h2 className="text-xl font-bold">Distribution by category</h2>
-                <BarChart
-                  layout="vertical"
-                  data={categoryGrouping}
-                  width={chartWidth}
-                  height={Math.max(800, chartWidth)}
-                  margin={{
-                    left: 100,
-                  }}
-                >
-                  <XAxis type="number" />
-                  <YAxis dataKey="category" type="category" />
-                  <Tooltip
-                    cursor={{ fill: "var(--foreground)", opacity: 0.1 }}
-                    content={CustomTooltip}
-                  />
-                  <Bar dataKey="count" barSize={30} fill="var(--primary)" />
-                </BarChart>
-              </>
+            {currentChart === "difficulty" && (
+              <DifficultyChart difficultyGrouping={difficultyGrouping} />
+            )}
+            {currentChart === "category" && (
+              <CategoryChart
+                categoryGrouping={categoryGrouping}
+                chartWidth={chartWidth}
+              />
             )}
           </>
         )}

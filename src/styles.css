@@ -22,3 +22,15 @@
 html, body {
   overflow-x: hidden;
 }
+
+.recharts-wrapper:focus,
+.recharts-surface:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+.recharts-sector,
+.recharts-layer {
+  pointer-events: none;
+}

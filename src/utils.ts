@@ -21,3 +21,9 @@ export function decodeHtml(html: string): string {
   textarea.innerHTML = html;
   return textarea.value;
 }
+
+// Strings
+
+export function capitalize(str: string): string {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
