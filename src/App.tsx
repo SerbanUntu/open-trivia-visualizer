@@ -60,23 +60,34 @@ function App() {
           <ThemeToggle />
         </header>
         <main className="flex flex-col gap-8 w-full items-center">
-          <div className="flex flex-wrap gap-2">
-            <label htmlFor="api-questions-fetch-amount">
+          <form
+            onSubmit={async (e) => {
+              e.preventDefault();
+              await getApiData();
+            }}
+            className="flex flex-wrap gap-2 items-center"
+          >
+            <label
+              htmlFor="api-questions-fetch-amount"
+              className="leading-none"
+            >
               Number of questions:
             </label>
             <input
               id="api-questions-fetch-amount"
               type="number"
-              className="border-border border-2 px-2 rounded-md"
+              className="border-border border-2 px-2 min-w-32 py-0.5 rounded-md"
+              min={1}
+              max={50}
               value={questionsAmount}
               onChange={(e) => {
                 setQuestionsAmount(Number(e.target.value));
               }}
             />
-            <Button isPrimary={true} onClick={async () => await getApiData()}>
-              Refetch
+            <Button isPrimary={true} type="submit" disabled={isLoading}>
+              {isLoading ? "Fetching..." : "Refetch"}
             </Button>
-          </div>
+          </form>
           {isLoading ? (
             <p className="text-muted">Loading...</p>
           ) : questions.length === 0 ? (

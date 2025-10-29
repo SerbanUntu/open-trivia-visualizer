@@ -12,6 +12,9 @@ export function generateApiUrl(amount: number) {
 export async function fetchQuestions(
   amount: number = 50
 ): Promise<Result<TriviaQuestion[], string>> {
+  if (amount < 1 || amount > 50) {
+    return Err("Amount of trivia questions must be between 1 and 50 inclusive");
+  }
   const url = generateApiUrl(amount);
   const response = await fetch(url);
   if (!response.ok) {
