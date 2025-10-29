@@ -6,6 +6,7 @@ import useWindow from "./hooks/use-window";
 import DifficultyChart from "./components/DifficultyChart";
 import CategoryChart from "./components/CategoryChart";
 import Button from "./components/Button";
+import ThemeToggle from "./components/ThemeToggle";
 
 const CHART_TYPES = ["category", "difficulty"];
 
@@ -80,7 +81,10 @@ function App() {
   return (
     <main className="bg-background overflow-x-hidden text-foreground w-screen min-h-screen flex justify-center">
       <div className="p-8 overflow-x-hidden w-full max-w-3xl flex flex-col items-center gap-8">
-        <h1 className="font-bold text-2xl">Open Trivia DB Visualizer</h1>
+        <div className="flex items-center gap-2">
+          <h1 className="font-bold text-2xl">Open Trivia DB Visualizer</h1>
+          <ThemeToggle />
+        </div>
         <div className="flex flex-wrap gap-2">
           <label htmlFor="api-questions-fetch-amount">
             Number of questions:
