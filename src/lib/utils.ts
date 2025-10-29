@@ -1,6 +1,14 @@
 // Error handling utils
 
-import type { Result } from "./types";
+export type Result<T, E> =
+  | {
+      ok: T;
+      err?: never;
+    }
+  | {
+      ok?: never;
+      err: E;
+    };
 
 export function Ok<T>(value: T): Result<T, never> {
   return { ok: value };

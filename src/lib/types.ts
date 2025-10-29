@@ -1,17 +1,5 @@
-// Error handling
-
 import z from "zod";
-import { Err, Ok } from "./utils";
-
-export type Result<T, E> =
-  | {
-      ok: T;
-      err?: never;
-    }
-  | {
-      ok?: never;
-      err: E;
-    };
+import { Err, Ok, type Result } from "./utils";
 
 // API Types
 
@@ -72,3 +60,15 @@ export const QuestionResponseSchema = z.object({
 });
 
 export type QuestionResponse = z.infer<typeof QuestionResponseSchema>;
+
+// Data processing
+
+export type CategoryGrouping = {
+  category: string;
+  count: number;
+};
+
+export type DifficultyGrouping = {
+  difficulty: "easy" | "medium" | "hard";
+  count: number;
+};

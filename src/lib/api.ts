@@ -1,10 +1,9 @@
 import {
   QuestionResponseSchema,
   type QuestionResponse,
-  type Result,
   type TriviaQuestion,
 } from "./types";
-import { Err, Ok, decodeHtml } from "./utils";
+import { Err, Ok, decodeHtml, type Result } from "./utils";
 
 export function generateApiUrl(amount: number) {
   return `https://opentdb.com/api.php?amount=${amount}`;

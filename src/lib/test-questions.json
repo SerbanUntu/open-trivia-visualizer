@@ -1,0 +1,449 @@
+{
+  "response_code": 0,
+  "results": [
+    {
+      "type": "multiple",
+      "difficulty": "easy",
+      "category": "General Knowledge",
+      "question": "What is the capital of France?",
+      "correct_answer": "Paris",
+      "incorrect_answers": ["Lyon", "Marseille", "Nice"]
+    },
+    {
+      "type": "boolean",
+      "difficulty": "easy",
+      "category": "Science & Nature",
+      "question": "Water boils at 100°C at standard atmospheric pressure.",
+      "correct_answer": "True",
+      "incorrect_answers": ["False"]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "medium",
+      "category": "History",
+      "question": "Who was the first President of the United States?",
+      "correct_answer": "George Washington",
+      "incorrect_answers": ["John Adams", "Thomas Jefferson", "James Madison"]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "medium",
+      "category": "Geography",
+      "question": "Which country has the longest coastline?",
+      "correct_answer": "Canada",
+      "incorrect_answers": ["Russia", "Australia", "Indonesia"]
+    },
+    {
+      "type": "boolean",
+      "difficulty": "easy",
+      "category": "Entertainment: Film",
+      "question": "The movie 'The Godfather' was released in the 1970s.",
+      "correct_answer": "True",
+      "incorrect_answers": ["False"]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "hard",
+      "category": "Science: Computers",
+      "question": "Which algorithm has an average time complexity of O(n log n) for sorting?",
+      "correct_answer": "Merge Sort",
+      "incorrect_answers": ["Bubble Sort", "Selection Sort", "Insertion Sort"]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "medium",
+      "category": "Sports",
+      "question": "How many players are there on the field for one soccer team during play?",
+      "correct_answer": "11",
+      "incorrect_answers": ["10", "12", "9"]
+    },
+    {
+      "type": "boolean",
+      "difficulty": "medium",
+      "category": "Science: Mathematics",
+      "question": "The number 0 is considered an even number.",
+      "correct_answer": "True",
+      "incorrect_answers": ["False"]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "hard",
+      "category": "History",
+      "question": "In which year did the Berlin Wall fall?",
+      "correct_answer": "1989",
+      "incorrect_answers": ["1991", "1987", "1990"]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "easy",
+      "category": "Entertainment: Music",
+      "question": "Which band released the album 'Abbey Road'?",
+      "correct_answer": "The Beatles",
+      "incorrect_answers": [
+        "The Rolling Stones",
+        "Pink Floyd",
+        "The Beach Boys"
+      ]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "medium",
+      "category": "General Knowledge",
+      "question": "What is the chemical symbol for gold?",
+      "correct_answer": "Au",
+      "incorrect_answers": ["Ag", "Gd", "Go"]
+    },
+    {
+      "type": "boolean",
+      "difficulty": "hard",
+      "category": "Science & Nature",
+      "question": "All mammals lay eggs.",
+      "correct_answer": "False",
+      "incorrect_answers": ["True"]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "medium",
+      "category": "Geography",
+      "question": "Which desert is the largest hot desert in the world?",
+      "correct_answer": "Sahara Desert",
+      "incorrect_answers": ["Gobi Desert", "Kalahari Desert", "Mojave Desert"]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "easy",
+      "category": "Entertainment: Video Games",
+      "question": "In 'The Legend of Zelda', what is the name of the main protagonist?",
+      "correct_answer": "Link",
+      "incorrect_answers": ["Zelda", "Ganon", "Epona"]
+    },
+    {
+      "type": "boolean",
+      "difficulty": "medium",
+      "category": "Science: Computers",
+      "question": "In binary, the number 2 is represented as '10'.",
+      "correct_answer": "True",
+      "incorrect_answers": ["False"]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "hard",
+      "category": "Art",
+      "question": "Who painted 'The Garden of Earthly Delights'?",
+      "correct_answer": "Hieronymus Bosch",
+      "incorrect_answers": [
+        "Pieter Bruegel the Elder",
+        "Sandro Botticelli",
+        "Albrecht Dürer"
+      ]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "medium",
+      "category": "Science & Nature",
+      "question": "What gas do plants primarily absorb from the atmosphere?",
+      "correct_answer": "Carbon dioxide",
+      "incorrect_answers": ["Oxygen", "Nitrogen", "Hydrogen"]
+    },
+    {
+      "type": "boolean",
+      "difficulty": "easy",
+      "category": "Mythology",
+      "question": "In Greek mythology, Zeus is the king of the gods.",
+      "correct_answer": "True",
+      "incorrect_answers": ["False"]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "hard",
+      "category": "Science: Mathematics",
+      "question": "What is the value of Euler’s number e rounded to three decimal places?",
+      "correct_answer": "2.718",
+      "incorrect_answers": ["3.142", "1.618", "2.303"]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "medium",
+      "category": "History",
+      "question": "Which empire was ruled by Mansa Musa?",
+      "correct_answer": "Mali Empire",
+      "incorrect_answers": [
+        "Songhai Empire",
+        "Ghana Empire",
+        "Kanem-Bornu Empire"
+      ]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "easy",
+      "category": "General Knowledge",
+      "question": "How many continents are there on Earth?",
+      "correct_answer": "7",
+      "incorrect_answers": ["5", "6", "8"]
+    },
+    {
+      "type": "boolean",
+      "difficulty": "medium",
+      "category": "Entertainment: Film",
+      "question": "Hayao Miyazaki co-founded Studio Ghibli.",
+      "correct_answer": "True",
+      "incorrect_answers": ["False"]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "hard",
+      "category": "Science: Computers",
+      "question": "Which of these is NOT a characteristic of functional programming?",
+      "correct_answer": "Mutable shared state",
+      "incorrect_answers": [
+        "First-class functions",
+        "Immutability",
+        "Pure functions"
+      ]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "medium",
+      "category": "Sports",
+      "question": "Which country won the FIFA World Cup in 2014?",
+      "correct_answer": "Germany",
+      "incorrect_answers": ["Argentina", "Brazil", "Spain"]
+    },
+    {
+      "type": "boolean",
+      "difficulty": "easy",
+      "category": "Science & Nature",
+      "question": "Humans have 206 bones as adults.",
+      "correct_answer": "True",
+      "incorrect_answers": ["False"]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "medium",
+      "category": "Geography",
+      "question": "Which river flows through the city of Budapest?",
+      "correct_answer": "Danube",
+      "incorrect_answers": ["Rhine", "Seine", "Elbe"]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "hard",
+      "category": "History",
+      "question": "Which treaty ended the Thirty Years' War in 1648?",
+      "correct_answer": "Peace of Westphalia",
+      "incorrect_answers": [
+        "Treaty of Utrecht",
+        "Treaty of Nijmegen",
+        "Treaty of Ryswick"
+      ]
+    },
+    {
+      "type": "boolean",
+      "difficulty": "medium",
+      "category": "Science: Mathematics",
+      "question": "The set of rational numbers is dense in the real numbers.",
+      "correct_answer": "True",
+      "incorrect_answers": ["False"]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "easy",
+      "category": "Entertainment: Television",
+      "question": "In 'Breaking Bad', what subject does Walter White teach?",
+      "correct_answer": "Chemistry",
+      "incorrect_answers": ["Physics", "Biology", "Mathematics"]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "medium",
+      "category": "General Knowledge",
+      "question": "Which language has the most native speakers worldwide?",
+      "correct_answer": "Mandarin Chinese",
+      "incorrect_answers": ["English", "Spanish", "Hindi"]
+    },
+    {
+      "type": "boolean",
+      "difficulty": "hard",
+      "category": "Science & Nature",
+      "question": "Neutrinos have zero mass.",
+      "correct_answer": "False",
+      "incorrect_answers": ["True"]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "medium",
+      "category": "Entertainment: Music",
+      "question": "Which composer wrote 'The Four Seasons'?",
+      "correct_answer": "Antonio Vivaldi",
+      "incorrect_answers": [
+        "Johann Sebastian Bach",
+        "Ludwig van Beethoven",
+        "George Frideric Handel"
+      ]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "hard",
+      "category": "Geography",
+      "question": "What is the highest peak in South America?",
+      "correct_answer": "Aconcagua",
+      "incorrect_answers": ["Huascarán", "Chimborazo", "Ojos del Salado"]
+    },
+    {
+      "type": "boolean",
+      "difficulty": "easy",
+      "category": "Mythology",
+      "question": "Thor is associated with thunder in Norse mythology.",
+      "correct_answer": "True",
+      "incorrect_answers": ["False"]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "medium",
+      "category": "History",
+      "question": "Who wrote 'The Prince', a political treatise of the Renaissance?",
+      "correct_answer": "Niccolò Machiavelli",
+      "incorrect_answers": [
+        "Thomas More",
+        "Francis Bacon",
+        "Desiderius Erasmus"
+      ]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "easy",
+      "category": "Science: Computers",
+      "question": "What does 'CPU' stand for?",
+      "correct_answer": "Central Processing Unit",
+      "incorrect_answers": [
+        "Central Program Unit",
+        "Computer Processing Unit",
+        "Central Peripheral Unit"
+      ]
+    },
+    {
+      "type": "boolean",
+      "difficulty": "medium",
+      "category": "General Knowledge",
+      "question": "Coffee originated in the region corresponding to modern-day Ethiopia.",
+      "correct_answer": "True",
+      "incorrect_answers": ["False"]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "hard",
+      "category": "Science & Nature",
+      "question": "Which vitamin is synthesized in the human skin upon exposure to sunlight?",
+      "correct_answer": "Vitamin D",
+      "incorrect_answers": ["Vitamin A", "Vitamin C", "Vitamin K"]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "medium",
+      "category": "Sports",
+      "question": "In tennis, what term describes a score of 40-40?",
+      "correct_answer": "Deuce",
+      "incorrect_answers": ["Advantage", "Let", "Love"]
+    },
+    {
+      "type": "boolean",
+      "difficulty": "easy",
+      "category": "Entertainment: Video Games",
+      "question": "Mario is a character created by Nintendo.",
+      "correct_answer": "True",
+      "incorrect_answers": ["False"]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "medium",
+      "category": "Geography",
+      "question": "Which city is nearest to the equator?",
+      "correct_answer": "Quito",
+      "incorrect_answers": ["Nairobi", "Singapore", "Kuala Lumpur"]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "hard",
+      "category": "Art",
+      "question": "Which artist is known for the triptych 'Three Studies for Figures at the Base of a Crucifixion'?",
+      "correct_answer": "Francis Bacon",
+      "incorrect_answers": ["Lucian Freud", "Mark Rothko", "Willem de Kooning"]
+    },
+    {
+      "type": "boolean",
+      "difficulty": "medium",
+      "category": "Science: Computers",
+      "question": "The 'P' in 'TCP/IP' stands for 'Protocol'.",
+      "correct_answer": "True",
+      "incorrect_answers": ["False"]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "easy",
+      "category": "General Knowledge",
+      "question": "Which planet is known as the Red Planet?",
+      "correct_answer": "Mars",
+      "incorrect_answers": ["Venus", "Jupiter", "Mercury"]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "medium",
+      "category": "History",
+      "question": "Which city was previously known as Constantinople?",
+      "correct_answer": "Istanbul",
+      "incorrect_answers": ["Ankara", "Athens", "Cairo"]
+    },
+    {
+      "type": "boolean",
+      "difficulty": "easy",
+      "category": "Science & Nature",
+      "question": "Lightning is hotter than the surface of the Sun.",
+      "correct_answer": "True",
+      "incorrect_answers": ["False"]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "hard",
+      "category": "Science: Mathematics",
+      "question": "Which of the following is not a normed vector space property?",
+      "correct_answer": "Non-associativity of addition",
+      "incorrect_answers": [
+        "Positive definiteness",
+        "Homogeneity",
+        "Triangle inequality"
+      ]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "medium",
+      "category": "Entertainment: Music",
+      "question": "Which band is known for the song 'Bohemian Rhapsody'?",
+      "correct_answer": "Queen",
+      "incorrect_answers": ["Led Zeppelin", "The Who", "Aerosmith"]
+    },
+    {
+      "type": "boolean",
+      "difficulty": "medium",
+      "category": "Geography",
+      "question": "The Nile River flows into the Mediterranean Sea.",
+      "correct_answer": "True",
+      "incorrect_answers": ["False"]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "easy",
+      "category": "Entertainment: Film",
+      "question": "Which actor played Jack in 'Titanic' (1997)?",
+      "correct_answer": "Leonardo DiCaprio",
+      "incorrect_answers": ["Brad Pitt", "Johnny Depp", "Tom Cruise"]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "hard",
+      "category": "History",
+      "question": "Which ruler implemented the Edict of Nantes in 1598?",
+      "correct_answer": "Henry IV of France",
+      "incorrect_answers": ["Louis XIII", "Charles IX", "Francis I"]
+    }
+  ]
+}

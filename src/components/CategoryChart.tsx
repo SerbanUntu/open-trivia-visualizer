@@ -15,6 +15,10 @@ import {
   ArrowDownZA,
 } from "lucide-react";
 import useWindow from "../hooks/use-window";
+import {
+  getSortedCategoryGrouping,
+  type SortingOptions,
+} from "../lib/data-processing";
 
 const CustomTooltip = ({
   active,
@@ -42,23 +46,11 @@ export default function CategoryChart({
     count: number;
   }[];
 }) {
-  const [sortBy, setSortBy] = useState<["name" | "count", "asc" | "desc"]>([
-    "name",
-    "asc",
-  ]);
+  const [sortBy, setSortBy] = useState<SortingOptions>(["name", "asc"]);
   const { width } = useWindow();
 
   const sortedCategoryGrouping = useMemo(() => {
-    const [sortType, sortOrder] = sortBy;
-    if (categoryGrouping.length === 0) return [];
-    return [...categoryGrouping].sort((a, b) => {
-      if (sortType === "name") {
-        return sortOrder === "asc"
-          ? a.category.localeCompare(b.category)
-          : b.category.localeCompare(a.category);
-      }
-      return sortOrder === "asc" ? a.count - b.count : b.count - a.count;
-    });
+    return getSortedCategoryGrouping(categoryGrouping, sortBy);
   }, [categoryGrouping, sortBy]);
 
   return (
