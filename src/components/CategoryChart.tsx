@@ -20,7 +20,16 @@ import {
   getSortedCategoryGrouping,
   type SortingOptions,
 } from "../lib/data-processing";
+import type { CategoryGrouping } from "../lib/types";
 
+/**
+ * A custom tooltip component for showing information about
+ * each bar in the category chart.
+ *
+ * @property active - Whether the tooltip is active.
+ * @property payload - The information about the data point at the current bar.
+ * @property label - The label of the data point at the current bar.
+ */
 const CustomTooltip = ({
   active,
   payload,
@@ -39,13 +48,16 @@ const CustomTooltip = ({
   return null;
 };
 
+/**
+ * A category chart component that displays the number of questions corresponding to each trivia category.
+ * Includes buttons for sorting the categories by name or count.
+ *
+ * @property categoryGrouping - The grouping of categories by name and count.
+ */
 export default function CategoryChart({
   categoryGrouping,
 }: {
-  categoryGrouping: {
-    category: string;
-    count: number;
-  }[];
+  categoryGrouping: CategoryGrouping[];
 }) {
   const [sortBy, setSortBy] = useState<SortingOptions>(["name", "asc"]);
   const { width } = useWindow();

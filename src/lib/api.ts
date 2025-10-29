@@ -5,10 +5,22 @@ import {
 } from "./types";
 import { Err, Ok, decodeHtml, type Result } from "./utils";
 
+/**
+ * Generates the URL for the API request to fetch trivia questions from the Open Trivia Database.
+ *
+ * @param amount - The number of trivia questions to fetch (up to 50).
+ * @returns The URL for the API request.
+ */
 export function generateApiUrl(amount: number) {
   return `https://opentdb.com/api.php?amount=${amount}`;
 }
 
+/**
+ * Fetches trivia questions from the Open Trivia Database, and returns the parsed result.
+ *
+ * @param amount - The number of trivia questions to fetch (up to 50).
+ * @returns The trivia questions, or an error message if the request failed.
+ */
 export async function fetchQuestions(
   amount: number = 50
 ): Promise<Result<TriviaQuestion[], string>> {

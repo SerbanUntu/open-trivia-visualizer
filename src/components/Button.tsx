@@ -1,3 +1,12 @@
+/**
+ * A styled button component, inspired by the IntelliJ IDEA UI.
+ *
+ * @property children - The content of the button.
+ * @property onClick - The function to call when the button is clicked.
+ * @property disabled - Whether the button is disabled.
+ * @property isPrimary - True if the button has the primary variant, false if it has the secondary variant.
+ * @property type - The HTML type of the button.
+ */
 export default function Button({
   children,
   onClick,

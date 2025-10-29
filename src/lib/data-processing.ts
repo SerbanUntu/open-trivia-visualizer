@@ -6,6 +6,13 @@ import type {
 
 export type SortingOptions = ["name" | "count", "asc" | "desc"];
 
+/**
+ * Sorts the category grouping by name or count, ascending or descending.
+ *
+ * @param categoryGrouping - An array of `{category: string, count: number}` objects, representing the questions grouped by category.
+ * @param sortingOptions - Whether to sort by name or count, and in which order.
+ * @returns The sorted category grouping.
+ */
 export const getSortedCategoryGrouping = (
   categoryGrouping: CategoryGrouping[],
   sortingOptions: SortingOptions
@@ -23,6 +30,12 @@ export const getSortedCategoryGrouping = (
   });
 };
 
+/**
+ * Groups trivia questions by category.
+ *
+ * @param questions - An array of trivia questions.
+ * @returns An array of `{category: string, count: number}` objects, representing the questions grouped by category.
+ */
 export const groupByCategory = (
   questions: TriviaQuestion[]
 ): CategoryGrouping[] => {
@@ -40,6 +53,12 @@ export const groupByCategory = (
   ).map((e) => ({ category: e[0], count: e[1] }));
 };
 
+/**
+ * Groups trivia questions by difficulty.
+ *
+ * @param questions - An array of trivia questions.
+ * @returns An array of `{difficulty: "easy" | "medium" | "hard", count: number}` objects, representing the questions grouped by difficulty.
+ */
 export const groupByDifficulty = (
   questions: TriviaQuestion[]
 ): DifficultyGrouping[] => {
