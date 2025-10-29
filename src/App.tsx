@@ -53,93 +53,131 @@ function App() {
   }, []);
 
   return (
-    <main className="bg-background overflow-x-hidden text-foreground w-screen min-h-screen flex justify-center">
+    <div className="bg-background overflow-x-hidden text-foreground w-screen min-h-screen flex justify-center">
       <div className="p-8 overflow-x-hidden w-full max-w-3xl flex flex-col items-center gap-8">
-        <div className="flex items-center gap-2">
+        <header className="flex items-center gap-2">
           <h1 className="font-bold text-2xl">Open Trivia DB Visualizer</h1>
           <ThemeToggle />
-        </div>
-        <div className="flex flex-wrap gap-2">
-          <label htmlFor="api-questions-fetch-amount">
-            Number of questions:
-          </label>
-          <input
-            id="api-questions-fetch-amount"
-            type="number"
-            className="border-border border-2 px-2 rounded-md"
-            value={questionsAmount}
-            onChange={(e) => {
-              setQuestionsAmount(Number(e.target.value));
-            }}
-          />
-          <Button isPrimary={true} onClick={async () => await getApiData()}>
-            Refetch
-          </Button>
-        </div>
-        {isLoading ? (
-          <p className="text-muted">Loading...</p>
-        ) : questions.length === 0 ? (
-          <p className="text-muted">No data to show.</p>
-        ) : (
-          <>
-            <div className="flex flex-col gap-2 w-full">
-              <p>Select a category filter:</p>
-              <div className="flex flex-wrap gap-2">
-                {categories.map((category) => (
-                  <Button
-                    key={category}
-                    isPrimary={filter === category}
-                    onClick={() => {
-                      if (filter === null || filter !== category) {
-                        setFilter(category);
-                        setCurrentChart("difficulty");
-                      } else {
-                        setFilter(null);
+        </header>
+        <main className="flex flex-col gap-8 w-full items-center">
+          <div className="flex flex-wrap gap-2">
+            <label htmlFor="api-questions-fetch-amount">
+              Number of questions:
+            </label>
+            <input
+              id="api-questions-fetch-amount"
+              type="number"
+              className="border-border border-2 px-2 rounded-md"
+              value={questionsAmount}
+              onChange={(e) => {
+                setQuestionsAmount(Number(e.target.value));
+              }}
+            />
+            <Button isPrimary={true} onClick={async () => await getApiData()}>
+              Refetch
+            </Button>
+          </div>
+          {isLoading ? (
+            <p className="text-muted">Loading...</p>
+          ) : questions.length === 0 ? (
+            <p className="text-muted">No data to show.</p>
+          ) : (
+            <>
+              <div className="flex flex-col gap-2 w-full">
+                <p>
+                  Select a category filter:
+                  {filter && (
+                    <span className="text-muted">
+                      {" "}
+                      (Press the same filter again to remove it)
+                    </span>
+                  )}
+                </p>
+                <menu className="flex flex-wrap gap-2">
+                  {categories.map((category) => (
+                    <Button
+                      key={category}
+                      isPrimary={filter === category}
+                      onClick={() => {
+                        if (filter === null || filter !== category) {
+                          setFilter(category);
+                          setCurrentChart("difficulty");
+                        } else {
+                          setFilter(null);
+                        }
+                      }}
+                    >
+                      {category}
+                    </Button>
+                  ))}
+                </menu>
+              </div>
+
+              <div className="flex flex-col gap-2 w-full">
+                <p>
+                  Select a chart:
+                  {filter && (
+                    <span className="text-muted">
+                      {" "}
+                      (Cannot group by category when a category filter is
+                      applied)
+                    </span>
+                  )}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {CHART_TYPES.map((chartType) => (
+                    <Button
+                      key={chartType}
+                      isPrimary={currentChart === chartType}
+                      disabled={
+                        isLoading ||
+                        (chartType === "category" && filter !== null)
                       }
-                    }}
-                  >
-                    {category}
-                  </Button>
-                ))}
+                      onClick={() => setCurrentChart(chartType)}
+                    >
+                      {capitalize(chartType)}
+                    </Button>
+                  ))}
+                </div>
               </div>
-            </div>
 
-            <div className="flex flex-col gap-2 w-full">
-              <p>
-                Select a chart:
-                {filter && (
-                  <span>
-                    {" "}
-                    (Cannot group by category when a category filter is applied)
-                  </span>
-                )}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {CHART_TYPES.map((chartType) => (
-                  <Button
-                    key={chartType}
-                    isPrimary={currentChart === chartType}
-                    disabled={
-                      isLoading || (chartType === "category" && filter !== null)
-                    }
-                    onClick={() => setCurrentChart(chartType)}
-                  >
-                    {capitalize(chartType)}
-                  </Button>
-                ))}
-              </div>
-            </div>
-
-            {currentChart === "difficulty" && (
-              <DifficultyChart difficultyGrouping={difficultyGrouping} />
-            )}
-            {currentChart === "category" && (
-              <CategoryChart categoryGrouping={categoryGrouping} />
-            )}
-          </>
-        )}
+              {currentChart === "difficulty" && (
+                <DifficultyChart difficultyGrouping={difficultyGrouping} />
+              )}
+              {currentChart === "category" && (
+                <CategoryChart categoryGrouping={categoryGrouping} />
+              )}
+            </>
+          )}
+        </main>
+        <footer className="text-sm mt-4 text-muted flex flex-col items-center gap-2">
+          <p>
+            The source code is available on{" "}
+            <a
+              className="hover:underline text-primary"
+              href="https://github.com/SerbanUntu/open-trivia-visualizer"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub
+            </a>
+            .
+          </p>
+          <p>
+            Data provided by the{" "}
+            <a
+              className="hover:underline text-primary"
+              href="https://opentdb.com/api_config.php"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open Trivia DB API
+            </a>
+            .
+          </p>
+        </footer>
       </div>
-    </main>
+    </div>
   );
 }
 

@@ -1,6 +1,7 @@
 import {
   Bar,
   BarChart,
+  CartesianGrid,
   Tooltip,
   XAxis,
   YAxis,
@@ -96,15 +97,17 @@ export default function CategoryChart({
       </div>
       <BarChart
         layout="vertical"
+        className="mt-8"
         data={sortedCategoryGrouping}
         width={Math.min(600, width - 64)}
         height={800}
       >
-        <XAxis type="number" />
+        <CartesianGrid strokeDasharray="3 3" stroke="var(--muted)" />
+        <XAxis type="number" tick={{ fill: "var(--foreground)" }} />
         <YAxis
           dataKey="category"
           type="category"
-          tick={{ fontSize: width > 480 ? 16 : 12 }}
+          tick={{ fontSize: width > 480 ? 16 : 12, fill: "var(--foreground)" }}
           width={width > 480 ? 200 : 100}
           interval={0}
         />
