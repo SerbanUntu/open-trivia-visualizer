@@ -1,10 +1,15 @@
 @import "tailwindcss";
 
-:root {
-  --background: light-dark(oklch(1 0 0), oklch(0.145 0 0));
-  --foreground: light-dark(oklch(0.145 0 0), oklch(0.985 0 0));
-  --card: light-dark(oklch(1 0 0), oklch(0.205 0 0));
-  --primary: light-dark(oklch(0.205 0 0), oklch(0.922 0 0));
-  --muted: light-dark(oklch(0.97 0 0), oklch(0.269 0 0));
-  --border: light-dark(oklch(0.97 0 0), oklch(0.269 0 0));
+@theme {
+  --font-sans: "PT Sans", system-ui; 
+  --color-background: light-dark(hsl(0deg 0% 100%), hsl(225deg 6% 13%));
+  --color-foreground: light-dark(hsl(0deg 0% 0%), hsl(225deg 6% 75%));
+  --color-card: light-dark(hsl(220deg 23% 97%), hsl(216deg 5% 18%));
+  --color-primary: light-dark(hsl(220deg 86% 57%), hsl(220deg 86% 57%));
+  --color-muted: light-dark(hsl(227deg 13% 72%), hsl(218deg 4% 35%));
+  --color-border: light-dark(hsl(229deg 14% 84%), hsl(218deg 4% 25%));
+}
+
+html, body {
+  overflow-x: hidden;
 }

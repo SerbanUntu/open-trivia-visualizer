@@ -11,8 +11,8 @@ export async function fetchQuestions(amount: number = 50): Promise<Result<Trivia
 	if (!response.ok) {
 		return Err(`An error occured. Status code ${response.status}`);
 	}
-	const data = await response.json();
-	try {
+  try {
+    const data = await response.json();
 		const result = data as QuestionResponse;
 		return Ok(result.results);
 	} catch (error: unknown) {
