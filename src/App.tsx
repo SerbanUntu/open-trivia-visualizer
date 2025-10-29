@@ -54,14 +54,11 @@ function App() {
 
   useEffect(() => {
     getApiData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    console.log(difficultyGrouping);
-  });
-
   return (
-    <main>
+    <main className="bg-background text-foreground">
       <div>
         <button onClick={async () => await getApiData()}>Refetch</button>
         <input
