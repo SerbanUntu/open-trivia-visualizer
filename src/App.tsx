@@ -165,7 +165,7 @@ function App() {
           <p>
             The source code is available on{" "}
             <a
-              className="hover:underline text-primary"
+              className="underline text-primary"
               href="https://github.com/SerbanUntu/open-trivia-visualizer"
               target="_blank"
               rel="noopener noreferrer"
@@ -177,7 +177,7 @@ function App() {
           <p>
             Data provided by the{" "}
             <a
-              className="hover:underline text-primary"
+              className="underline text-primary"
               href="https://opentdb.com/api_config.php"
               target="_blank"
               rel="noopener noreferrer"
