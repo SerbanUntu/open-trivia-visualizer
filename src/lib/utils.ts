@@ -14,7 +14,7 @@ export function isErr<T, E>(result: Result<T, E>): result is { err: E } {
 	return "err" in result;
 }
 
-// HTML parsing
+// HTML parsing (requires access to the DOM)
 
 export function decodeHtml(html: string): string {
   const textarea = document.createElement("textarea");

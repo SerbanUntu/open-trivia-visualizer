@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import { fetchQuestions } from "./api";
-import { capitalize, isErr } from "./utils";
-import { type TriviaQuestion } from "./types";
-import useWindow from "./hooks/use-window";
+import { fetchQuestions } from "./lib/api";
+import { capitalize, isErr } from "./lib/utils";
+import { type TriviaQuestion } from "./lib/types";
 import DifficultyChart from "./components/DifficultyChart";
 import CategoryChart from "./components/CategoryChart";
 import Button from "./components/Button";
@@ -17,14 +16,10 @@ function App() {
   const [filter, setFilter] = useState<string | null>(null);
   const [currentChart, setCurrentChart] =
     useState<(typeof CHART_TYPES)[number]>("difficulty");
-  const { width } = useWindow();
 
   const categories = Array.from(
     new Set(questions.map((q) => q.category))
   ).sort();
-
-  const chartWidth = Math.min(600, width - 64);
-  // const chartHeight = chartWidth / 2;
 
   const getApiData = async () => {
     setIsLoading(true);
@@ -162,7 +157,6 @@ function App() {
             {currentChart === "category" && (
               <CategoryChart
                 categoryGrouping={categoryGrouping}
-                chartWidth={chartWidth}
               />
             )}
           </>

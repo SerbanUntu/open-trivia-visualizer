@@ -41,7 +41,6 @@ export default function CategoryChart({
     category: string;
     count: number;
   }[];
-  chartWidth: number;
 }) {
   const [sortBy, setSortBy] = useState<["name" | "count", "asc" | "desc"]>([
     "name",
