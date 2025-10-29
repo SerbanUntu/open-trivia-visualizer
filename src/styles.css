@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+:root {
+  --background: var(--color-background);
+  --foreground: var(--color-foreground);
+  --card: var(--color-card);
+  --primary: var(--color-primary);
+  --muted: var(--color-muted);
+  --border: var(--color-border);
+}
+
 @theme {
   --font-sans: "PT Sans", system-ui; 
   --color-background: light-dark(hsl(0deg 0% 100%), hsl(225deg 6% 13%));

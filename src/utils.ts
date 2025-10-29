@@ -13,3 +13,11 @@ export function Err<E>(error: E): Result<never, E> {
 export function isErr<T, E>(result: Result<T, E>): result is { err: E } {
 	return "err" in result;
 }
+
+// HTML parsing
+
+export function decodeHtml(html: string): string {
+  const textarea = document.createElement("textarea");
+  textarea.innerHTML = html;
+  return textarea.value;
+}
