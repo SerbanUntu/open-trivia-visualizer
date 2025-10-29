@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { fetchQuestions } from "./lib/api";
-import { capitalize, isErr } from "./lib/utils";
+import { capitalize, isErr, updateUrlSearchParams } from "./lib/utils";
 import { type TriviaQuestion } from "./lib/types";
 import DifficultyChart from "./components/DifficultyChart";
 import CategoryChart from "./components/CategoryChart";
@@ -10,13 +10,24 @@ import { groupByCategory, groupByDifficulty } from "./lib/data-processing";
 
 const CHART_TYPES = ["category", "difficulty"];
 
+const sanitizeChartType = (
+  chartParam: string | null
+): (typeof CHART_TYPES)[number] => {
+  let chartType = "difficulty";
+  if (chartParam === "category") chartType = "category";
+  return chartType;
+};
+
 function App() {
+  const chartParam = new URLSearchParams(window.location.search).get("chart");
+
   const [questionsAmount, setQuestionsAmount] = useState(50);
   const [questions, setQuestions] = useState<TriviaQuestion[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [filter, setFilter] = useState<string | null>(null);
-  const [currentChart, setCurrentChart] =
-    useState<(typeof CHART_TYPES)[number]>("difficulty");
+  const [currentChart, setCurrentChart] = useState<
+    (typeof CHART_TYPES)[number]
+  >(sanitizeChartType(chartParam));
 
   const categories = Array.from(
     new Set(questions.map((q) => q.category))
@@ -51,6 +62,16 @@ function App() {
     getApiData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    const currentParams = new URLSearchParams(window.location.search);
+    currentParams.set("chart", currentChart);
+    if (currentChart === "difficulty") {
+      currentParams.delete("sort-type");
+      currentParams.delete("sort-order");
+    }
+    updateUrlSearchParams(currentParams);
+  }, [currentChart]);
 
   return (
     <div className="bg-background overflow-x-hidden text-foreground w-screen min-h-screen flex justify-center">

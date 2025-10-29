@@ -80,3 +80,21 @@ export function decodeHtml(html: string): string {
 export function capitalize(str: string): string {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
+
+// Browser utils
+
+/**
+ * Updates the URL search params and pushes a new state to the history.
+ *
+ * @param searchParams - The new state of the search params.
+ */
+export function updateUrlSearchParams(searchParams: URLSearchParams) {
+  const newUrl =
+    window.location.protocol +
+    "//" +
+    window.location.host +
+    window.location.pathname +
+    "?" +
+    searchParams.toString();
+  window.history.pushState({ path: newUrl }, "", newUrl);
+}

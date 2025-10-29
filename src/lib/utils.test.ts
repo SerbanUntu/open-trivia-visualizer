@@ -1,4 +1,11 @@
-import { capitalize, decodeHtml, Err, isErr, Ok } from "./utils";
+import {
+  capitalize,
+  decodeHtml,
+  Err,
+  isErr,
+  Ok,
+  updateUrlSearchParams,
+} from "./utils";
 import { describe, test, expect } from "vitest";
 
 describe("error handling utils", () => {
@@ -79,6 +86,56 @@ describe("string utils", () => {
       const str = "";
       const capitalized = capitalize(str);
       expect(capitalized).toBe("");
-    })
+    });
+  });
+});
+
+describe("browser utils", () => {
+  describe("updateUrlSearchParams", () => {
+    test("should be able to add a new search param", () => {
+      const searchParams = new URLSearchParams();
+      searchParams.set("test", "test");
+      updateUrlSearchParams(searchParams);
+      expect(window.location.search).toBe("?test=test");
+    });
+
+    test("should not modify the rest of the URL", () => {
+      const searchParams = new URLSearchParams();
+      const originalProtocol = window.location.protocol;
+      const originalHost = window.location.host;
+      const originalPathname = window.location.pathname;
+      searchParams.set("test", "test");
+      updateUrlSearchParams(searchParams);
+      expect(window.location.protocol).toBe(originalProtocol);
+      expect(window.location.host).toBe(originalHost);
+      expect(window.location.pathname).toBe(originalPathname);
+    });
+
+    test("can handle multiple search params", () => {
+      const searchParams = new URLSearchParams();
+      searchParams.set("test", "test");
+      updateUrlSearchParams(searchParams);
+      searchParams.set("hello", "world");
+      updateUrlSearchParams(searchParams);
+      expect(window.location.search).toBe("?test=test&hello=world");
+    });
+
+    test("should be able to update an existing search param", () => {
+      const searchParams = new URLSearchParams();
+      searchParams.set("test", "test");
+      updateUrlSearchParams(searchParams);
+      searchParams.set("test", "updated");
+      updateUrlSearchParams(searchParams);
+      expect(window.location.search).toBe("?test=updated");
+    });
+
+    test("should be able to remove an existing search param", () => {
+      const searchParams = new URLSearchParams();
+      searchParams.set("test", "test");
+      updateUrlSearchParams(searchParams);
+      searchParams.delete("test");
+      updateUrlSearchParams(searchParams);
+      expect(window.location.search).toBe("");
+    });
   });
 });

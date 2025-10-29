@@ -8,7 +8,7 @@ import {
   type TooltipContentProps,
 } from "recharts";
 import Button from "./Button";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   ArrowUpWideNarrow,
   ArrowDownWideNarrow,
@@ -21,6 +21,12 @@ import {
   type SortingOptions,
 } from "../lib/data-processing";
 import type { CategoryGrouping } from "../lib/types";
+import { updateUrlSearchParams } from "../lib/utils";
+
+/**
+ * The maximum device width in pixels at which the tick width of the y-axis should be reduced.
+ */
+const TICK_WIDTH_DEVICE_BREAKPOINT_PIXELS = 480;
 
 /**
  * A custom tooltip component for showing information about
@@ -48,6 +54,17 @@ const CustomTooltip = ({
   return null;
 };
 
+const sanitizeSortingOptions = (
+  sortTypeParam: string | null,
+  sortOrderParam: string | null
+): SortingOptions => {
+  let sortType = "name";
+  let sortOrder = "asc";
+  if (sortTypeParam === "count") sortType = "count";
+  if (sortOrderParam === "desc") sortOrder = "desc";
+  return [sortType as "name" | "count", sortOrder as "asc" | "desc"];
+};
+
 /**
  * A category chart component that displays the number of questions corresponding to each trivia category.
  * Includes buttons for sorting the categories by name or count.
@@ -59,12 +76,25 @@ export default function CategoryChart({
 }: {
   categoryGrouping: CategoryGrouping[];
 }) {
-  const [sortBy, setSortBy] = useState<SortingOptions>(["name", "asc"]);
+  const searchParams = new URLSearchParams(window.location.search);
+  const sortTypeParam = searchParams.get("sort-type");
+  const sortOrderParam = searchParams.get("sort-order");
+
+  const [sortBy, setSortBy] = useState<SortingOptions>(
+    sanitizeSortingOptions(sortTypeParam, sortOrderParam)
+  );
   const { width } = useWindow();
 
   const sortedCategoryGrouping = useMemo(() => {
     return getSortedCategoryGrouping(categoryGrouping, sortBy);
   }, [categoryGrouping, sortBy]);
+
+  useEffect(() => {
+    const currentParams = new URLSearchParams(window.location.search);
+    currentParams.set("sort-type", sortBy[0]);
+    currentParams.set("sort-order", sortBy[1]);
+    updateUrlSearchParams(currentParams);
+  }, [sortBy]);
 
   return (
     <div className="w-full flex flex-col gap-2">
@@ -119,8 +149,11 @@ export default function CategoryChart({
         <YAxis
           dataKey="category"
           type="category"
-          tick={{ fontSize: width > 480 ? 16 : 12, fill: "var(--foreground)" }}
-          width={width > 480 ? 200 : 100}
+          tick={{
+            fontSize: width > TICK_WIDTH_DEVICE_BREAKPOINT_PIXELS ? 16 : 12,
+            fill: "var(--foreground)",
+          }}
+          width={width > TICK_WIDTH_DEVICE_BREAKPOINT_PIXELS ? 200 : 100}
           interval={0}
         />
         <Tooltip
